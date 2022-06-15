@@ -1,4 +1,8 @@
 
+const loginForm = document.querySelector("#login");
+const createAccountForm = document.querySelector("#createAccount");
+
+
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
 
@@ -10,8 +14,7 @@ function setFormMessage(formElement, type, message) {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.querySelector("#login");
-    const createAccountForm = document.querySelector("#createAccount");
+    
 
     document.querySelector("#linkCreateAccount").addEventListener("click", e => {
         e.preventDefault();
@@ -25,12 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         createAccountForm.classList.add("form--hidden");
     });
 
-    loginForm.addEventListener("submit", e => {
-        e.preventDefault();
-
-        
-        setFormMessage(loginForm, "error", "Invalid username/password combination");
-    });
+    
 
    
 });
