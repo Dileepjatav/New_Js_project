@@ -1,0 +1,55 @@
+{"items":[
+    {   "sys":{"id":"1"},
+        "files":{
+            "name":"Cooler",
+            "discription":"300rpm moter with inverter inbuilt",
+            "prise":"8000",
+            "rating":3,
+            "image":{"url":"./img/product-2.jpeg"}
+        }
+
+    },
+    
+    {   "sys":{"id":"2"},
+        "files":{
+            "name":"AC",
+            "discription":"1 Ton ac",
+            "prise":"41000",
+            "rating":2,
+            "image":{"url":"./img/product-3.jpeg"}
+        }
+
+    },
+    
+    {   "sys":{"id":"3"},
+        "files":{
+            "name":"TV",
+            "discription":"4K hd tv",
+            "prise":"16000",
+            "rating":5,
+            "image":{"url":"./img/product-4.jpeg"}
+        }
+
+    },
+    {   "sys":{"id":"3"},
+        "files":{
+            "name":"TV",
+            "discription":"4K hd tv",
+            "prise":"16000",
+            "rating":5,
+            "image":{"url":"./img/product-4.jpeg"}
+        }
+
+    },
+    {   "sys":{"id":"3"},
+        "files":{
+            "name":"TV",
+            "discription":"4K hd tv",
+            "prise":"16000",
+            "rating":5,
+            "image":{"url":"./img/product-4.jpeg"}
+        }
+
+    }
+]
+}
