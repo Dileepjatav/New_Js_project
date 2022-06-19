@@ -5,12 +5,16 @@ const cartscreen=document.querySelector('.cart-screen');
 const cartlayout=document.querySelector('.cart-layout');
 const clearcart=document.querySelector('.clear-cart');
 const cartcontent=document.querySelector('.cart-box');
+const cartPrice = document.querySelector(".amount");
+const itemincart =document.querySelector('.item-in-cart');
+
 
 // cartbtn.addEventListener('click',()=>{
 //     cartscreen.classList.add("show-cart");
 //     cartlayout.classList.add("transform");
 // })
 
+let cart = [];
 
 class products{
     async getdata(){
@@ -57,7 +61,7 @@ class uiinterface{
                         <h4 class="box_rating"> Rating ${element.rating}</h4>
                         <div class="btn_div">
                             <button data-id=${element.id} class="Box_button_add">Add to cart</button>
-                            <button class="Box_button_buy">Buy</button>
+                            <button data-id=${element.id} class="Box_button_buy">Buy</button>
                         </div>
                     </div>
     
@@ -75,7 +79,63 @@ class uiinterface{
         
     }
 
+
+
+    setCartValues(cart){
+        let totalprise = 0;
+        let totalitem = 0;
+        cart=cart.map((cartitem)=>{
+            totalprise+=cartitem.prise*cartitem.amount;
+            totalitem+=cartitem.amount;
+        });
+
+        cartPrice.innerHTML=totalprise;
+    }
+
+    initialSetup() {
+        cart = Storage.getCart();
+        this.setCartValues(cart);
+        this.addCartItems(cart);
+    }
+
+
+    addCartItems(cart) {
+        console.log("inside this fun");
+        let cartHtml = "";
+        cart.forEach((selectproduct) => {
+            cartHtml += `<div class="cart-detail">
+                    <div class="cart-item-img">
+                <img class="cart-img" src="${selectproduct.image}">
+     
+                        </div>
+                <div class="cart-detail-text">
+                    <div class="cart-decr">
+         <h3>Name <span class="item-name">${selectproduct.name}</span></h3>
+         <h4>Prise     <span class="item-prise">${selectproduct.prise}</span></h4>
+                    </div>
+                <div class="cart-btn-div">
+         
+         <div class="btn-inc">
+             <button class="btn-cart">-</button>
+             <h4>0</h4>
+             <button class="btn-cart">+</button>
+         </div>
+         
+         <button class="btn-remove">Remove</button>
+                    </div>
+
+              </div>
+                    </div>`;
+        });
+        cartcontent.innerHTML = cartHtml;
+    }
+    
+
+
+    
+
     showCart() {
+
         // cartscreen.classList.add("show-cart");
         // cartlayout.classList.add("transform");
 
@@ -90,6 +150,98 @@ class uiinterface{
 
     }
 
+    buybutton(){
+        let buybtn=[...document.querySelectorAll('.Box_button_buy')];
+        
+        buybtn.forEach((btn)=>{
+            let id =btn.dataset.id;
+            btn.addEventListener('click',(event)=>{
+                event.target.innerHTML="sold"
+
+                console.log(id);
+            })
+
+        })
+
+    }
+
+    
+
+    btn_all_addtocart(){
+        let btn=[...document.querySelectorAll('.Box_button_add')];
+            
+            btn.forEach((button)=>{
+                let id=button.dataset.id;
+                button.addEventListener('click',(event)=>{
+                    event.target.innerHTML='IN cart'
+                    event.target.disabled=true;
+                    console.log("add btn clicked"+id); 
+                    let selectproduct=Storage.get_fromlocal(event.target.dataset.id);
+                    selectproduct={...selectproduct,amount:1};
+                    cart = [...cart, selectproduct];
+                    Storage.setCartItems(cart);
+
+                    this.addCartItems(cart);
+
+                    this.setCartValues(cart);
+
+                    
+                    this.showCart();
+
+                })
+            })
+    }
+
+    element_addtocart(){
+       
+        console.log("element added");
+
+
+    }
+    
+
+}
+
+
+
+
+
+class Storage{
+    static savedata(products){
+        localStorage.setItem("Products",JSON.stringify(products));
+    }
+
+    static get_fromlocal(id){
+        return JSON.parse(localStorage.getItem("Products")).find(
+            (prod) => prod.id === id
+          );
+        
+    }
+    static satcartitems(item){
+        localStorage.setItem("item".JSON.parse(item));
+    }
+    static takecartitems(id){
+        let cartdata=localStorage.getItem("item").find((ele)=>{
+            ele.id===id
+        })
+
+        return JSON.parse(cartdata);
+    }
+
+    static setcart(product){
+        localStorage.setItem("product".JSON.stringify(product));
+    }
+
+    static setCartItems(cart) {
+        localStorage.setItem("Cart", JSON.stringify(cart));
+        }
+    static getCart() {
+        return localStorage.getItem("Cart")
+          ? JSON.parse(localStorage.getItem("Cart"))
+          : [];
+        }
+    
+
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -100,57 +252,17 @@ document.addEventListener("DOMContentLoaded",()=>{
     p.getdata()
         .then((data)=>{
             ui.insertproductindom(data);
+            ui.buybutton();
+            ui.btn_all_addtocart();
+            Storage.savedata(data);
 
-            localStorage.setItem("datafromapi",JSON.stringify(data));
-
-            let btn=[...document.querySelectorAll('.Box_button_add')];
-            
-            btn.forEach((element)=>{
-                let id=element.dataset.id;
-                element.addEventListener('click',(event)=>{
-                    event.target.innerHTML='IN cart'
-                    event.target.disabled=true;
-
-
-                    let selectproduct=data.find((products)=>products.id===id);
-                    console.log(selectproduct)
-                    let carthtml=`<div class="cart-detail">
-                             <div class="cart-item-img">
-                            <img class="cart-img" src="${selectproduct.image}">
-                        
-                            </div>
-                                <div class="cart-detail-text">
-                         <div class="cart-decr">
-                            <h3>Name <span class="item-name">${selectproduct.name}</span></h3>
-                            <h4>Prise     <span class="item-prise">${selectproduct.prise}</span></h4>
-                        </div>
-                        <div class="cart-btn-div">
-                            
-                            <div class="btn-inc">
-                                <button class="btn-cart">-</button>
-                                <h4>0</h4>
-                                <button class="btn-cart">+</button>
-                            </div>
-                            
-                            <button class="btn-remove">Remove</button>
-                        </div>
-
-                                 </div>
-                        </div>`
-
-                    cartcontent.innerHTML= cartcontent.innerHTML+carthtml;
-
-
-
-
-                })
-
-
-            })
+           
             
         });
     
 });
+
+
 
 
 cartbtn.addEventListener('click',()=>{

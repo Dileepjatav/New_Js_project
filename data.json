@@ -1,53 +1,63 @@
 {"items":[
     {   "sys":{"id":"1"},
         "files":{
-            "name":"Cooler",
-            "discription":"300rpm moter with inverter inbuilt",
+            "name":"Headphone",
+            "discription":"Bluetooth 5.1 20W FullBass",
             "prise":"8000",
-            "rating":3,
-            "image":{"url":"./img/product-2.jpeg"}
+            "rating":4.5,
+            "image":{"url":"./img/headphone.jpg"}
         }
 
     },
     
     {   "sys":{"id":"2"},
         "files":{
-            "name":"AC",
-            "discription":"1 Ton ac",
+            "name":"I phone 10",
+            "discription":"white 256GB ",
             "prise":"41000",
-            "rating":2,
-            "image":{"url":"./img/product-3.jpeg"}
+            "rating":4,
+            "image":{"url":"./img/iphone-se-2020-21.gpg.webp"}
         }
 
     },
     
     {   "sys":{"id":"3"},
         "files":{
-            "name":"TV",
-            "discription":"4K hd tv",
-            "prise":"16000",
+            "name":"Macbook",
+            "discription":"Apple m1 processor 8GB DDR4 512GB SSD ",
+            "prise":"160000",
             "rating":5,
-            "image":{"url":"./img/product-4.jpeg"}
+            "image":{"url":"./img/macbook.jpg"}
         }
 
     },
-    {   "sys":{"id":"3"},
+    {   "sys":{"id":"4"},
         "files":{
-            "name":"TV",
-            "discription":"4K hd tv",
-            "prise":"16000",
+            "name":"i pad",
+            "discription":"256GB black ",
+            "prise":"60000",
             "rating":5,
-            "image":{"url":"./img/product-4.jpeg"}
+            "image":{"url":"./img/ipad.jpg"}
         }
 
     },
-    {   "sys":{"id":"3"},
+    {   "sys":{"id":"5"},
+        "files":{
+            "name":"Speaker",
+            "discription":"Wireless 800W RMS BAssboosted ",
+            "prise":"18000",
+            "rating":3.5,
+            "image":{"url":"./img/speaker.jpg"}
+        }
+
+    },
+    {   "sys":{"id":"6"},
         "files":{
             "name":"TV",
-            "discription":"4K hd tv",
-            "prise":"16000",
-            "rating":5,
-            "image":{"url":"./img/product-4.jpeg"}
+            "discription":"4K Full HD Display ",
+            "prise":"38000",
+            "rating":4.5,
+            "image":{"url":"./img/pc.jpg"}
         }
 
     }
