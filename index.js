@@ -7,6 +7,8 @@ const clearcart=document.querySelector('.clear-cart');
 const cartcontent=document.querySelector('.cart-box');
 const cartPrice = document.querySelector(".amount");
 const itemincart =document.querySelector('.item-in-cart');
+const thankyou=document.querySelector('.buy-item');
+const thankuclose=document.querySelector('.cross');
 
 
 // cartbtn.addEventListener('click',()=>{
@@ -15,6 +17,7 @@ const itemincart =document.querySelector('.item-in-cart');
 // })
 
 let cart = [];
+let cartitem=0;
 
 class products{
     async getdata(){
@@ -79,6 +82,13 @@ class uiinterface{
         
     }
 
+    countcartitem(){
+        cartitem+=1;
+        console.log(cartitem);
+        itemincart.textContent=cartitem;
+        
+    }
+
 
 
     setCartValues(cart){
@@ -128,6 +138,7 @@ class uiinterface{
                     </div>`;
         });
         cartcontent.innerHTML = cartHtml;
+        this.countcartitem();
     }
     
 
@@ -150,6 +161,14 @@ class uiinterface{
 
     }
 
+    thankyouwindow(){
+        thankyou.style.visibility="visible";
+    }
+    thankclose(){
+        thankyou.style.visibility="hidden";
+
+    }
+
     buybutton(){
         let buybtn=[...document.querySelectorAll('.Box_button_buy')];
         
@@ -157,11 +176,18 @@ class uiinterface{
             let id =btn.dataset.id;
             btn.addEventListener('click',(event)=>{
                 event.target.innerHTML="sold"
+                event.target.disabled=true;
+                this.thankyouwindow();
+                
 
-                console.log(id);
+                
+
+                
             })
 
         })
+
+        
 
     }
 
@@ -263,7 +289,11 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 
 
+thankuclose.addEventListener('click',()=>{
+    const ui=new uiinterface();
+    ui.thankclose();
 
+})
 
 cartbtn.addEventListener('click',()=>{
     const ui=new uiinterface();
