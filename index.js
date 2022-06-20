@@ -11,10 +11,7 @@ const thankyou=document.querySelector('.buy-item');
 const thankuclose=document.querySelector('.cross');
 
 
-// cartbtn.addEventListener('click',()=>{
-//     cartscreen.classList.add("show-cart");
-//     cartlayout.classList.add("transform");
-// })
+
 
 let cart = [];
 let cartitem=0;
@@ -147,17 +144,20 @@ class uiinterface{
 
     showCart() {
 
-        // cartscreen.classList.add("show-cart");
-        // cartlayout.classList.add("transform");
+        cartscreen.classList.add("show-cart");
+        cartlayout.classList.add("transform");
 
-        cartscreen.style.visibility = "visible";
-        cartlayout.style.transform= "translateX(0)";
+        // cartscreen.style.visibility = "visible";
+        // cartlayout.style.transform= "translateX(0)";
         
     }
 
     clearcart(){
-        cartscreen.style.visibility = "hidden";
-        cartlayout.style.transform= "";
+        cartscreen.classList.remove("show-cart");
+        cartlayout.classList.remove("transform");
+
+        // cartscreen.style.visibility = "hidden";
+        // cartlayout.style.transform = "";
 
     }
 

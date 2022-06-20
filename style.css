@@ -144,9 +144,7 @@
     font-size: 10px;
     
 } 
-.show-cart{
-    visibility: visible;
-}  
+
 
 .cart-screen{
     background-color: rgba(38, 187, 137, 0.562);
@@ -159,9 +157,10 @@
     visibility: hidden;
     
 }
-.transform{
-    transform: translateX(0);
-}
+.show-cart{
+    visibility: visible;
+}  
+
 .cart-layout{
     position: absolute;
     top: 0;
@@ -176,6 +175,9 @@
     visibility: visible;
     overflow: auto;
     
+}
+.transform{
+    transform: translateX(0);
 }
 .cart-box{
     
