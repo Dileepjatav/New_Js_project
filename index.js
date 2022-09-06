@@ -41,6 +41,7 @@ class uiinterface{
     insertproductindom(products){
         let result="";
         products.forEach((element) => {
+            
             result+=`<div class="container">
             <div class="Data">
                 <div class="Box">
@@ -227,9 +228,6 @@ class uiinterface{
     
 
 }
-
-
-
 
 
 class Storage{
